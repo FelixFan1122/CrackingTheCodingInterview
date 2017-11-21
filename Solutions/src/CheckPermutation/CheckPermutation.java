@@ -5,12 +5,12 @@ import java.util.List;
 public class CheckPermutation {
     private static final int CodePageNumber = 128;
 
-    private static boolean IsPermutation(List<String> inputs) {
+    private static boolean isPermutation(List<String> inputs) {
         if (inputs.size() < 2) {
             return false;
         }
 
-        int[] dictionary = BuildDictionary(inputs.get(0));
+        int[] dictionary = buildDictionary(inputs.get(0));
         for (String input :
                 inputs.subList(1, inputs.size())) {
             int[] counts = dictionary.clone();
@@ -34,14 +34,14 @@ public class CheckPermutation {
 
     public static void main(String[] args) {
         boolean expected = true;
-        boolean actual = IsPermutation(List.of("abcdefg", "gfedcba"));
+        boolean actual = isPermutation(List.of("abcdefg", "gfedcba"));
         System.out.println(String.format("expected = %s, actual = %s", expected, actual));
         expected = false;
-        actual = IsPermutation(List.of("abcdefg", "abcdeff"));
+        actual = isPermutation(List.of("abcdefg", "abcdeff"));
         System.out.println(String.format("expected = %s, actual = %s", expected, actual));
     }
 
-    private static int[] BuildDictionary(String sample) {
+    private static int[] buildDictionary(String sample) {
         int[] dictionary = new int[CodePageNumber];
         for (int i = 0; i < sample.length(); i++) {
             char codePage = sample.charAt(i);
