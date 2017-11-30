@@ -3,6 +3,10 @@ package com.felix.ctci.StringRotation;
 //It was solved after having taken a peek at the hints.
 public class StringRotation {
     private static boolean isRotation(String input1, String input2) {
+        if (input1.isEmpty() || input2.isEmpty() || input1.length() != input2.length()) {
+            return false;
+        }
+
         return (input1 + input1).contains(input2);
     }
 
