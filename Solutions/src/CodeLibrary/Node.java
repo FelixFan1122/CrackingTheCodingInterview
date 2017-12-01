@@ -8,6 +8,12 @@ public class Node {
         this.data = data;
     }
 
+    public int getData() { return data; }
+
+    public Node getNext() { return next; }
+
+    public void setNext(Node next) { this.next = next; }
+
     public static Node Delete(Node linkedlist, int data) {
         if (linkedlist.data == data) {
             return linkedlist.next;
