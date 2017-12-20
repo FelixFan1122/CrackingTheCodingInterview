@@ -3,6 +3,7 @@ package com.felix.ctci.CodeLibrary;
 public class TreeNode<E> {
     private E element;
     private TreeNode<E> leftChild;
+    private TreeNode<E> parent;
     private TreeNode<E> rightChild;
 
     public TreeNode(E element) {
@@ -19,6 +20,14 @@ public class TreeNode<E> {
 
     public void setLeftChild(TreeNode<E> leftChild) {
         this.leftChild = leftChild;
+    }
+
+    public TreeNode<E> getParent() {
+        return parent;
+    }
+
+    public void setParent(TreeNode<E> parent) {
+        this.parent = parent;
     }
 
     public TreeNode<E> getRightChild() {
