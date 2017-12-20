@@ -2,10 +2,17 @@ package com.felix.ctci.Successor;
 
 import com.felix.ctci.CodeLibrary.TreeNode;
 
+import javax.swing.*;
+
 public class Successor {
     public static <E> TreeNode<E> getSuccessorInOrder(TreeNode<E> bst) {
         if (bst.getRightChild() != null) {
-            return bst.getRightChild();
+            TreeNode<E> current = bst.getRightChild();
+            while (current.getLeftChild() != null) {
+                current = current.getLeftChild();
+            }
+
+            return current;
         }
 
         TreeNode<E> current = bst;
