@@ -1,6 +1,7 @@
 package com.felix.ctci.NextNumber;
 
 public class NextNumber {
+    private int intBits = Integer.BYTES * Byte.SIZE;
     private int n;
 
     public NextNumber (int n) {
@@ -12,46 +13,40 @@ public class NextNumber {
     }
 
     public int getNextNumber() {
-      int oneCount = 0;
-      if ((n & 1) == 1) {
-          oneCount++;
-      }
-
-      int i = 1;
-      for (; i < Integer.BYTES * Byte.SIZE; i++) {
-          if ((n & (1 << i)) == 0) {
-              break;
-          } else {
-              oneCount++;
-          }
-      }
-
-      if (i == Integer.BYTES * Byte.SIZE) {
-          throw new IllegalArgumentException();
-      }
-
-      return ((-1 << (i + 1)) & n) | (1 << i) | (-1 >>> (Integer.BYTES * Byte.SIZE - oneCount));
-    }
-
-    public int getPreviousNumber() {
-        int zeroCount = 0;
-        if ((n & 1) == 0) {
-            zeroCount++;
+        int oneCount = 0;
+        int position = 0;
+        while (((n & (1 << position)) == 0) && position < intBits) {
+            position++;
         }
 
-        int i = 1;
-        for (; i < Integer.BYTES * Byte.SIZE; i++) {
-            if ((n & (1 << i)) == 1) {
-                break;
-            } else {
-                zeroCount++;
-            }
+        while (((n & (1 << position)) > 0) && position < intBits) {
+            position++;
+            oneCount++;
         }
 
-        if (i == Integer.BYTES * Byte.SIZE) {
+        if (position == intBits) {
             throw new IllegalArgumentException();
         }
 
-        return ((-1 >>> (Integer.BYTES * Byte.SIZE - (i + 1))) | n) & (-1 << zeroCount);
+        return (n & (-1 << (position + 1))) | (1 << position) | (-1 >>> (intBits - oneCount));
+    }
+
+    public int getPreviousNumber() {
+        int position = 0;
+        int zeroCount = 0;
+        while (((n & (1 << position)) > 0) && position < intBits) {
+            position++;
+        }
+
+        while (((n & (1 << position)) == 0) && position < intBits) {
+            position++;
+            zeroCount++;
+        }
+
+        if (position == intBits) {
+            throw new IllegalArgumentException();
+        }
+
+        return (n | (1 << position) & (-1 << (position - 1))) & (-1 << zeroCount);
     }
 }
