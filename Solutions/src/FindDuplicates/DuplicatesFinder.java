@@ -9,10 +9,10 @@ public class DuplicatesFinder {
         BitSet ints = new BitSet(UPPER_BOUND);
         for (int element :
                 input) {
-            if (ints.get(element)) {
+            if (ints.get(element + 1)) {
                 System.out.println(element);
             } else {
-                ints.set(element);
+                ints.set(element + 1);
             }
         }
     }
