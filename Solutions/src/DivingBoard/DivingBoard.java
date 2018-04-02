@@ -1,6 +1,5 @@
 package com.felix.ctci.DivingBoard;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class DivingBoard {
