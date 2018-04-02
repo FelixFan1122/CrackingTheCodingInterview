@@ -1,6 +1,7 @@
 package com.felix.ctci.DivingBoard;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class DivingBoard {
     private final int longer;
@@ -15,9 +16,9 @@ public class DivingBoard {
         shorter = length1 < length2 ? length1 : length2;
     }
 
-    public ArrayList<Integer> getAllPossibleLengths(int numberOfPlanks) {
+    public HashSet<Integer> getAllPossibleLengths(int numberOfPlanks) {
         int shortest = shorter * numberOfPlanks;
-        ArrayList<Integer> allPossibleLengths = new ArrayList<>();
+        HashSet<Integer> allPossibleLengths = new HashSet<>();
         allPossibleLengths.add(shortest);
         int delta = longer - shorter;
         for (int i = 1; i <= numberOfPlanks; i++) {
